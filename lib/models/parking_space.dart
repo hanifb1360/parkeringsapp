@@ -1,5 +1,5 @@
 class ParkingSpace {
-  int id;
+  String id;
   String address;
   double pricePerHour;
 
@@ -10,3 +10,4 @@ class ParkingSpace {
     return 'ParkingSpace(id: $id, address: $address, pricePerHour: $pricePerHour)';
   }
 }
+

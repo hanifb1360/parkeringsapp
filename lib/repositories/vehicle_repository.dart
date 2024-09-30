@@ -1,7 +1,8 @@
 import '../models/vehicle.dart';
+import '../models/person.dart';
 
 class VehicleRepository {
-  List<Vehicle> _vehicles = [];
+  final List<Vehicle> _vehicles = [];
 
   void add(Vehicle vehicle) {
     _vehicles.add(vehicle);
@@ -11,23 +12,24 @@ class VehicleRepository {
     return _vehicles;
   }
 
-  Vehicle? getByRegistration(String registrationNumber) {  // Note the return type is nullable (Vehicle?)
-    return _vehicles.firstWhere(
-      (vehicle) => vehicle.registrationNumber == registrationNumber,
-      orElse: () => null,  // null can now be returned
-    );
-  }
+Vehicle getByRegistrationNumber(String registrationNumber) {
+  return _vehicles.firstWhere(
+    (v) => v.registrationNumber == registrationNumber,
+    orElse: () => throw Exception('Vehicle not found'),
+  );
+}
 
-  void update(Vehicle updatedVehicle) {
-    var index = _vehicles.indexWhere(
-      (vehicle) => vehicle.registrationNumber == updatedVehicle.registrationNumber,
-    );
+
+
+
+  void update(Vehicle vehicle) {
+    var index = _vehicles.indexWhere((v) => v.registrationNumber == vehicle.registrationNumber);
     if (index != -1) {
-      _vehicles[index] = updatedVehicle;
+      _vehicles[index] = vehicle;
     }
   }
 
   void delete(String registrationNumber) {
-    _vehicles.removeWhere((vehicle) => vehicle.registrationNumber == registrationNumber);
+    _vehicles.removeWhere((v) => v.registrationNumber == registrationNumber);
   }
 }

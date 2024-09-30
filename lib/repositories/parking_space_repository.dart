@@ -1,7 +1,7 @@
 import '../models/parking_space.dart';
 
 class ParkingSpaceRepository {
-  List<ParkingSpace> _parkingSpaces = [];
+  final List<ParkingSpace> _parkingSpaces = [];
 
   void add(ParkingSpace parkingSpace) {
     _parkingSpaces.add(parkingSpace);
@@ -11,23 +11,23 @@ class ParkingSpaceRepository {
     return _parkingSpaces;
   }
 
-  ParkingSpace? getById(int id) {  // Note the return type is nullable (ParkingSpace?)
-    return _parkingSpaces.firstWhere(
-      (space) => space.id == id,
-      orElse: () => null,  // null can now be returned
-    );
-  }
+ParkingSpace getById(String id) {
+  return _parkingSpaces.firstWhere(
+    (p) => p.id == id,
+    orElse: () => throw Exception('Parking space not found'),
+  );
+}
 
-  void update(ParkingSpace updatedSpace) {
-    var index = _parkingSpaces.indexWhere(
-      (space) => space.id == updatedSpace.id,
-    );
+
+
+  void update(ParkingSpace parkingSpace) {
+    var index = _parkingSpaces.indexWhere((p) => p.id == parkingSpace.id);
     if (index != -1) {
-      _parkingSpaces[index] = updatedSpace;
+      _parkingSpaces[index] = parkingSpace;
     }
   }
 
-  void delete(int id) {
-    _parkingSpaces.removeWhere((space) => space.id == id);
+  void delete(String id) {
+    _parkingSpaces.removeWhere((p) => p.id == id);
   }
 }
