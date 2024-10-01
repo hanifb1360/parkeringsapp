@@ -44,4 +44,9 @@ class ParkingRepository {
     _parkings
         .removeWhere((p) => p.vehicle.registrationNumber == registrationNumber);
   }
+
+  // Add this method to clear the repository for testing
+  void clear() {
+    _parkings.clear();
+  }
 }

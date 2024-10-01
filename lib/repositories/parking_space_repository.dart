@@ -37,4 +37,9 @@ class ParkingSpaceRepository {
   void delete(String id) {
     _parkingSpaces.removeWhere((p) => p.id == id);
   }
+
+  // Add this method to clear the repository for testing
+  void clear() {
+    _parkingSpaces.clear();
+  }
 }

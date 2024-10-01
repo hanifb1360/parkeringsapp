@@ -46,7 +46,7 @@ void main() {
       repository.update(updatedPerson);
 
       final retrievedPerson = repository.getById('123');
-      expect(retrievedPerson!.name, 'Johnny Doe'); // Update should be reflected
+      expect(retrievedPerson.name, 'Johnny Doe'); // Update should be reflected
     });
 
     test('should delete a person', () {
