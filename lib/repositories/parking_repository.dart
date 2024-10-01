@@ -9,7 +9,7 @@ class ParkingRepository {
 
   ParkingRepository._internal();
 
-  /// Fabrikkonstruktor för att returnera singleton-instansen
+  /// Factory-konstruktor för att returnera singleton-instansen
 
   factory ParkingRepository() {
     return _instance;
