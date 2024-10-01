@@ -45,7 +45,8 @@ class ParkingRepository {
         .removeWhere((p) => p.vehicle.registrationNumber == registrationNumber);
   }
 
-  // Add this method to clear the repository for testing
+ // att rensa förvaret bara för testning
+
   void clear() {
     _parkings.clear();
   }
