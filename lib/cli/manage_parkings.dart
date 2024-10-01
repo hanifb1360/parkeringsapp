@@ -87,7 +87,7 @@ void manageParkings(ParkingRepository parkingRepo,
 // Funktion för att avsluta en parkering och beräkna kostnaden
 void endParking(Parking parking, ParkingRepository parkingRepo) {
   parking.endTime = DateTime.now(); // Sätt sluttiden till nu
-  parkingRepo.update(parking); // Uppdatera parkeringen i databasen
+  parkingRepo.update(parking); // Uppdatera parkeringen i lagret
   print('Parkering avslutad.');
 
   // Beräkna kostnaden
