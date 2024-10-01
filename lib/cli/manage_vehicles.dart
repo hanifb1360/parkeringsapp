@@ -4,8 +4,10 @@ import '../repositories/person_repository.dart';
 import 'vehicle_search.dart';
 import '../models/vehicle.dart';
 
-void manageVehicles(
-    VehicleRepository vehicleRepo, PersonRepository personRepo) {
+void manageVehicles() {
+  final vehicleRepo = VehicleRepository(); // Singleton instance
+  final personRepo = PersonRepository(); // Singleton instance
+
   print('\nDu har valt att hantera Fordon.');
   print('1. Skapa nytt fordon');
   print('2. Visa alla fordon');
@@ -62,7 +64,7 @@ void manageVehicles(
       break;
 
     case '5':
-      // Anropa sökfunktionen för att hitta fordon efter ägare
+      // Call the search function to find vehicles by owner
       searchVehiclesByOwner(vehicleRepo);
       break;
 

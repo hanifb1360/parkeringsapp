@@ -1,6 +1,17 @@
 import '../models/person.dart';
 
 class PersonRepository {
+  /// Statisk variabel för att hålla den enda instansen av PersonRepository
+  static final PersonRepository _instance = PersonRepository._internal();
+
+  /// Privat konstruktor
+  PersonRepository._internal();
+
+  /// Factory constructor för att returnera samma instans
+  factory PersonRepository() {
+    return _instance;
+  }
+
   final List<Person> _persons = [];
 
   void add(Person person) {
@@ -19,7 +30,8 @@ class PersonRepository {
   }
 
   void update(Person person) {
-    var index = _persons.indexWhere((p) => p.personalNumber == person.personalNumber);
+    var index =
+        _persons.indexWhere((p) => p.personalNumber == person.personalNumber);
     if (index != -1) {
       _persons[index] = person;
     }

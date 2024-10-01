@@ -2,7 +2,9 @@ import 'dart:io';
 import '../repositories/parking_space_repository.dart';
 import '../models/parking_space.dart';
 
-void manageParkingSpaces(ParkingSpaceRepository repository) {
+void manageParkingSpaces() {
+  final repository = ParkingSpaceRepository(); // Singleton instance
+
   print('\nDu har valt att hantera Parkeringsplatser.');
   print('1. Skapa ny parkeringsplats');
   print('2. Visa alla parkeringsplatser');
@@ -14,7 +16,7 @@ void manageParkingSpaces(ParkingSpaceRepository repository) {
 
   switch (choice) {
     case '1':
-      // Skapa ny parkeringsplats
+      // Create new parking space
       stdout.write('Ange ID: ');
       var id = stdin.readLineSync();
       if (id == null || id.isEmpty) {
@@ -38,8 +40,9 @@ void manageParkingSpaces(ParkingSpaceRepository repository) {
       repository.add(parkingSpace);
       print('Parkeringsplats skapad: $parkingSpace');
       break;
+
     case '2':
-      // Visa alla parkeringsplatser
+      // View all parking spaces
       var parkingSpaces = repository.getAll();
       if (parkingSpaces.isEmpty) {
         print('Inga parkeringsplatser registrerade.');
@@ -49,8 +52,9 @@ void manageParkingSpaces(ParkingSpaceRepository repository) {
         }
       }
       break;
+
     case '3':
-      // Uppdatera parkeringsplats
+      // Update parking space
       stdout.write('Ange ID för den parkeringsplats du vill uppdatera: ');
       var id = stdin.readLineSync();
       if (id == null || id.isEmpty) {
@@ -58,7 +62,6 @@ void manageParkingSpaces(ParkingSpaceRepository repository) {
         break;
       }
       var parkingSpace = repository.getById(id);
-      print('Parkeringsplats med ID $id hittades inte.');
       stdout.write('Ange ny adress: ');
       var newAddress = stdin.readLineSync();
       if (newAddress == null || newAddress.isEmpty) {
@@ -76,8 +79,9 @@ void manageParkingSpaces(ParkingSpaceRepository repository) {
       repository.update(parkingSpace);
       print('Parkeringsplats uppdaterad: $parkingSpace');
       break;
+
     case '4':
-      // Ta bort parkeringsplats
+      // Delete parking space
       stdout.write('Ange ID för den parkeringsplats du vill ta bort: ');
       var id = stdin.readLineSync();
       if (id == null || id.isEmpty) {
@@ -87,11 +91,12 @@ void manageParkingSpaces(ParkingSpaceRepository repository) {
       repository.delete(id);
       print('Parkeringsplats borttagen.');
       break;
+
     case '5':
-      // Gå tillbaka till huvudmenyn
+      // Go back to main menu
       return;
+
     default:
-      // Ogiltigt val
       print('Ogiltigt val, försök igen.');
   }
 }

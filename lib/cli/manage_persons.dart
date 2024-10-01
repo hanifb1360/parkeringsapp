@@ -2,9 +2,11 @@ import 'dart:io';
 import '../repositories/person_repository.dart';
 import '../models/person.dart';
 
-void managePersons(PersonRepository repository) {
+void managePersons() {
+  final repository = PersonRepository(); // Singleton instance
+
   while (true) {
-    // Visa meny för att hantera personer
+    // Display menu for managing persons
     print('\nDu har valt att hantera Personer.');
     print('1. Skapa ny person');
     print('2. Visa alla personer');
@@ -16,7 +18,7 @@ void managePersons(PersonRepository repository) {
 
     switch (choice) {
       case '1':
-        // Skapa ny person
+        // Create a new person
         stdout.write('Ange namn: ');
         var name = stdin.readLineSync();
         if (name == null || name.isEmpty) {
@@ -34,7 +36,7 @@ void managePersons(PersonRepository repository) {
         print('Person skapad: $person');
         break;
       case '2':
-        // Visa alla registrerade personer
+        // Display all registered persons
         var persons = repository.getAll();
         if (persons.isEmpty) {
           print('Inga personer registrerade.');
@@ -45,7 +47,7 @@ void managePersons(PersonRepository repository) {
         }
         break;
       case '3':
-        // Uppdatera en befintlig person
+        // Update an existing person
         stdout.write('Ange personnummer för den person du vill uppdatera: ');
         var personalNumber = stdin.readLineSync();
         if (personalNumber == null || personalNumber.isEmpty) {
@@ -53,7 +55,7 @@ void managePersons(PersonRepository repository) {
           continue;
         }
         var person = repository.getById(personalNumber);
-        // Ingen null-kontroll för person eftersom det inte kan vara null
+        // No need for null-check here, because the person cannot be null
         stdout.write('Ange nytt namn: ');
         var newName = stdin.readLineSync();
         if (newName == null || newName.isEmpty) {
@@ -65,7 +67,7 @@ void managePersons(PersonRepository repository) {
         print('Person uppdaterad: $person');
         break;
       case '4':
-        // Ta bort en person
+        // Delete a person
         stdout.write('Ange personnummer för den person du vill ta bort: ');
         var personalNumber = stdin.readLineSync();
         if (personalNumber == null || personalNumber.isEmpty) {
@@ -76,10 +78,10 @@ void managePersons(PersonRepository repository) {
         print('Person borttagen.');
         break;
       case '5':
-        // Gå tillbaka till huvudmenyn
+        // Go back to the main menu
         return;
       default:
-        // Ogiltigt val
+        // Invalid option
         print('Ogiltigt val, försök igen.');
     }
   }

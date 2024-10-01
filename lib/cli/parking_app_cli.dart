@@ -1,8 +1,4 @@
 import 'dart:io';
-import '../repositories/person_repository.dart';
-import '../repositories/vehicle_repository.dart';
-import '../repositories/parking_space_repository.dart';
-import '../repositories/parking_repository.dart';
 
 // Import the separated CLI management files
 import 'manage_persons.dart';
@@ -11,11 +7,6 @@ import 'manage_parking_spaces.dart';
 import 'manage_parkings.dart';
 
 void runCLI() {
-  final personRepository = PersonRepository();
-  final vehicleRepository = VehicleRepository();
-  final parkingSpaceRepository = ParkingSpaceRepository();
-  final parkingRepository = ParkingRepository();
-
   while (true) {
     print('\nVälkommen till Parkeringsappen!');
     print('Vad vill du hantera?');
@@ -29,16 +20,16 @@ void runCLI() {
 
     switch (choice) {
       case '1':
-        managePersons(personRepository);
+        managePersons(); // No arguments needed here
         break;
       case '2':
-        manageVehicles(vehicleRepository, personRepository);
+        manageVehicles(); // No arguments needed here
         break;
       case '3':
-        manageParkingSpaces(parkingSpaceRepository);
+        manageParkingSpaces(); // No arguments needed here
         break;
       case '4':
-        manageParkings(parkingRepository, vehicleRepository, parkingSpaceRepository);
+        manageParkings(); // No arguments needed here
         break;
       case '5':
         print('Avslutar...');

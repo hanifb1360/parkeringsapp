@@ -1,6 +1,14 @@
 import '../models/vehicle.dart';
 
 class VehicleRepository {
+  static final VehicleRepository _instance = VehicleRepository._internal();
+
+  VehicleRepository._internal();
+
+  factory VehicleRepository() {
+    return _instance;
+  }
+
   final List<Vehicle> _vehicles = [];
 
   void add(Vehicle vehicle) {
