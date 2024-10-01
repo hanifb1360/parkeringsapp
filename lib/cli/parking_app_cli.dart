@@ -1,6 +1,6 @@
 import 'dart:io';
 
-// Import the separated CLI management files
+// Importera de separata CLI-hanteringsfilerna
 import 'manage_persons.dart';
 import 'manage_vehicles.dart';
 import 'manage_parking_spaces.dart';
@@ -20,16 +20,16 @@ void runCLI() {
 
     switch (choice) {
       case '1':
-        managePersons(); // No arguments needed here
+        managePersons();
         break;
       case '2':
-        manageVehicles(); // No arguments needed here
+        manageVehicles();
         break;
       case '3':
-        manageParkingSpaces(); // No arguments needed here
+        manageParkingSpaces();
         break;
       case '4':
-        manageParkings(); // No arguments needed here
+        manageParkings();
         break;
       case '5':
         print('Avslutar...');

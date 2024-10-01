@@ -40,4 +40,9 @@ class PersonRepository {
   void delete(String personalNumber) {
     _persons.removeWhere((p) => p.personalNumber == personalNumber);
   }
+
+  // Add this method to clear the repository between tests
+  void clear() {
+    _persons.clear();
+  }
 }

@@ -3,7 +3,7 @@ import '../repositories/parking_space_repository.dart';
 import '../models/parking_space.dart';
 
 void manageParkingSpaces() {
-  final repository = ParkingSpaceRepository(); // Singleton instance
+  final repository = ParkingSpaceRepository();
 
   print('\nDu har valt att hantera Parkeringsplatser.');
   print('1. Skapa ny parkeringsplats');
@@ -16,7 +16,7 @@ void manageParkingSpaces() {
 
   switch (choice) {
     case '1':
-      // Create new parking space
+      // Skapa ny parkeringsplats
       stdout.write('Ange ID: ');
       var id = stdin.readLineSync();
       if (id == null || id.isEmpty) {
@@ -42,7 +42,7 @@ void manageParkingSpaces() {
       break;
 
     case '2':
-      // View all parking spaces
+      // Visa alla parkeringsplatser
       var parkingSpaces = repository.getAll();
       if (parkingSpaces.isEmpty) {
         print('Inga parkeringsplatser registrerade.');
@@ -54,7 +54,7 @@ void manageParkingSpaces() {
       break;
 
     case '3':
-      // Update parking space
+      // Uppdatera parkeringsplats
       stdout.write('Ange ID för den parkeringsplats du vill uppdatera: ');
       var id = stdin.readLineSync();
       if (id == null || id.isEmpty) {
@@ -81,7 +81,7 @@ void manageParkingSpaces() {
       break;
 
     case '4':
-      // Delete parking space
+      // Ta bort parkeringsplats
       stdout.write('Ange ID för den parkeringsplats du vill ta bort: ');
       var id = stdin.readLineSync();
       if (id == null || id.isEmpty) {
@@ -93,7 +93,7 @@ void manageParkingSpaces() {
       break;
 
     case '5':
-      // Go back to main menu
+      // Gå tillbaka till huvudmenyn
       return;
 
     default:

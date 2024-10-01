@@ -1,7 +1,7 @@
 import 'dart:io';
 import '../repositories/vehicle_repository.dart';
 
-// Function to search for vehicles by owner
+// Funktion för att söka efter fordon via ägare
 void searchVehiclesByOwner(VehicleRepository vehicleRepo) {
   stdout.write('Ange ägarens personnummer för att söka efter fordon: ');
   var ownerPersonalNumber = stdin.readLineSync();
@@ -12,7 +12,9 @@ void searchVehiclesByOwner(VehicleRepository vehicleRepo) {
     if (vehicles.isEmpty) {
       print('Inga fordon hittades för den ägaren.');
     } else {
-      vehicles.forEach((vehicle) => print(vehicle));
+      for (var vehicle in vehicles) {
+        print(vehicle);
+      }
     }
   } else {
     print('Fel: Ange ett giltigt personnummer.');

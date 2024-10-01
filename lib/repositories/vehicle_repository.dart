@@ -43,4 +43,9 @@ class VehicleRepository {
   void delete(String registrationNumber) {
     _vehicles.removeWhere((v) => v.registrationNumber == registrationNumber);
   }
+
+  // Add this method to clear all vehicles from the repository
+  void clear() {
+    _vehicles.clear();
+  }
 }
