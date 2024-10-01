@@ -33,6 +33,7 @@ void manageParkings(ParkingRepository parkingRepo,
       parkingRepo.add(parking);
       print('Parkering skapad: $parking');
       break;
+
     case '2':
       // Visa alla parkeringar
       var parkings = parkingRepo.getAll();
@@ -44,20 +45,26 @@ void manageParkings(ParkingRepository parkingRepo,
         }
       }
       break;
+
     case '3':
-      // Uppdatera parkering
+      // Uppdatera parkering och avsluta den
       stdout.write(
           'Ange fordonets registreringsnummer för den parkering du vill uppdatera: ');
       var regNumber = stdin.readLineSync();
       var parking = parkingRepo.getByVehicleRegistration(regNumber!);
-      stdout.write('Vill du avsluta parkeringen? (j/n): ');
-      var shouldEnd = stdin.readLineSync();
-      if (shouldEnd == 'j') {
-        parking.endTime = DateTime.now();
-        parkingRepo.update(parking);
-        print('Parkering uppdaterad: $parking');
+      if (parking != null) {
+        stdout.write('Vill du avsluta parkeringen? (j/n): ');
+        var shouldEnd = stdin.readLineSync();
+        if (shouldEnd == 'j') {
+          endParking(parking, parkingRepo);
+        } else {
+          print('Parkeringen avslutas inte.');
+        }
+      } else {
+        print('Ingen parkering hittades för det fordonet.');
       }
       break;
+
     case '4':
       // Ta bort parkering
       stdout.write(
@@ -66,11 +73,24 @@ void manageParkings(ParkingRepository parkingRepo,
       parkingRepo.delete(regNumber!);
       print('Parkering borttagen.');
       break;
+
     case '5':
       // Gå tillbaka till huvudmenyn
       return;
+
     default:
       // Ogiltigt val
       print('Ogiltigt val, försök igen.');
   }
+}
+
+// Funktion för att avsluta en parkering och beräkna kostnaden
+void endParking(Parking parking, ParkingRepository parkingRepo) {
+  parking.endTime = DateTime.now(); // Sätt sluttiden till nu
+  parkingRepo.update(parking); // Uppdatera parkeringen i databasen
+  print('Parkering avslutad.');
+
+  // Beräkna kostnaden
+  double cost = parking.calculateCost();
+  print('Total kostnad: $cost SEK');
 }
