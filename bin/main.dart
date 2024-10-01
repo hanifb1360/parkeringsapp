@@ -1,4 +1,4 @@
-import '../lib/cli/parking_app_cli.dart';
+import 'package:parkeringsapp/cli/parking_app_cli.dart';
 
 void main() {
   runCLI();
