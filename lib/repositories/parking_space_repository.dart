@@ -38,7 +38,7 @@ class ParkingSpaceRepository {
     _parkingSpaces.removeWhere((p) => p.id == id);
   }
 
-  // Add this method to clear the repository for testing
+  // att rensa förvaret bara för testning
   void clear() {
     _parkingSpaces.clear();
   }

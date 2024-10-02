@@ -26,7 +26,7 @@ void manageVehicles() {
       var type = stdin.readLineSync();
       stdout.write('Ange ägarens personnummer: ');
       var ownerPersonalNumber = stdin.readLineSync();
-      var owner = personRepo.getById(ownerPersonalNumber!);
+      var owner = personRepo.getById(ownerPersonalNumber!); // Fetch owner by ID
       var vehicle = Vehicle(
           registrationNumber: registrationNumber!, type: type!, owner: owner);
       vehicleRepo.add(vehicle);
@@ -48,7 +48,8 @@ void manageVehicles() {
       stdout
           .write('Ange registreringsnummer för det fordon du vill uppdatera: ');
       var registrationNumber = stdin.readLineSync();
-      var vehicle = vehicleRepo.getByRegistrationNumber(registrationNumber!);
+      var vehicle =
+          vehicleRepo.getById(registrationNumber!); // Use getById here
       stdout.write('Ange ny typ (bil, motorcykel, etc.): ');
       var newType = stdin.readLineSync();
       vehicle.type = newType!;
@@ -59,7 +60,8 @@ void manageVehicles() {
     case '4':
       stdout.write('Ange registreringsnummer för det fordon du vill ta bort: ');
       var registrationNumber = stdin.readLineSync();
-      vehicleRepo.delete(registrationNumber!);
+      vehicleRepo
+          .delete(registrationNumber!); // Använd registreringsnummer som ID
       print('Fordon borttagen.');
       break;
 

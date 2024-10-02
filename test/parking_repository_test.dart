@@ -9,7 +9,7 @@ void main() {
   group('ParkingRepository', () {
     final repository = ParkingRepository();
 
-    // Clear the repository before each test
+    // Rensa lagret före varje test
     setUp(() {
       repository.clear();
     });
@@ -59,7 +59,9 @@ void main() {
       expect(allParkings, containsAll([parking1, parking2]));
     });
 
-    test('should retrieve a parking by vehicle registration number', () {
+    test(
+        'should retrieve a parking by vehicle registration number (using getById)',
+        () {
       final owner = Person(personalNumber: '123', name: 'John Doe');
       final vehicle =
           Vehicle(registrationNumber: 'ABC123', owner: owner, type: 'Car');
@@ -71,7 +73,8 @@ void main() {
           startTime: DateTime.now());
       repository.add(parking);
 
-      final retrievedParking = repository.getByVehicleRegistration('ABC123');
+      // Använd getById istället för getByVehicleRegistration
+      final retrievedParking = repository.getById('ABC123');
       expect(retrievedParking, equals(parking));
     });
 
@@ -94,7 +97,8 @@ void main() {
           endTime: DateTime.now());
       repository.update(updatedParking);
 
-      final retrievedParking = repository.getByVehicleRegistration('ABC123');
+      // Använd getById istället för getByVehicleRegistration
+      final retrievedParking = repository.getById('ABC123');
       expect(retrievedParking.endTime, isNotNull);
     });
 
@@ -112,8 +116,8 @@ void main() {
 
       repository.delete('ABC123');
 
-      expect(() => repository.getByVehicleRegistration('ABC123'),
-          throwsA(isA<Exception>()));
+      // Använd getById istället för getByVehicleRegistration
+      expect(() => repository.getById('ABC123'), throwsA(isA<Exception>()));
     });
   });
 }

@@ -19,9 +19,9 @@ class VehicleRepository {
     return _vehicles;
   }
 
-  Vehicle getByRegistrationNumber(String registrationNumber) {
+  Vehicle getById(String id) {
     return _vehicles.firstWhere(
-      (v) => v.registrationNumber == registrationNumber,
+      (v) => v.registrationNumber == id, // Use registrationNumber as the ID
       orElse: () => throw Exception('Vehicle not found'),
     );
   }
@@ -40,11 +40,12 @@ class VehicleRepository {
     }
   }
 
-  void delete(String registrationNumber) {
-    _vehicles.removeWhere((v) => v.registrationNumber == registrationNumber);
+  void delete(String id) {
+    _vehicles.removeWhere(
+        (v) => v.registrationNumber == id); // Use id as registration number
   }
 
-  // Add this method to clear all vehicles from the repository
+  // Method to clear repository for testing
   void clear() {
     _vehicles.clear();
   }

@@ -1,15 +1,9 @@
 import '../models/parking.dart';
 
 class ParkingRepository {
-  /// Statisk instans av lagret
-
   static final ParkingRepository _instance = ParkingRepository._internal();
 
-  /// Privat konstruktor
-
   ParkingRepository._internal();
-
-  /// Factory-konstruktor för att returnera singleton-instansen
 
   factory ParkingRepository() {
     return _instance;
@@ -25,9 +19,11 @@ class ParkingRepository {
     return _parkings;
   }
 
-  Parking getByVehicleRegistration(String registrationNumber) {
+  Parking getById(String id) {
     return _parkings.firstWhere(
-      (p) => p.vehicle.registrationNumber == registrationNumber,
+      (p) =>
+          p.vehicle.registrationNumber ==
+          id, // Use vehicle registration as the ID
       orElse: () => throw Exception('Parking not found'),
     );
   }
@@ -40,13 +36,12 @@ class ParkingRepository {
     }
   }
 
-  void delete(String registrationNumber) {
-    _parkings
-        .removeWhere((p) => p.vehicle.registrationNumber == registrationNumber);
+  void delete(String id) {
+    _parkings.removeWhere((p) =>
+        p.vehicle.registrationNumber == id); // Use id as vehicle registration
   }
 
- // att rensa förvaret bara för testning
-
+  // Method to clear repository for testing
   void clear() {
     _parkings.clear();
   }

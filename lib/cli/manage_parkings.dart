@@ -24,10 +24,11 @@ void manageParkings() {
       // Skapa ny parkering
       stdout.write('Ange fordonets registreringsnummer: ');
       var regNumber = stdin.readLineSync();
-      var vehicle = vehicleRepo.getByRegistrationNumber(regNumber!);
+      var vehicle = vehicleRepo.getById(regNumber!); // Use getById instead
       stdout.write('Ange parkeringsplatsens ID: ');
       var parkingSpaceId = stdin.readLineSync();
-      var parkingSpace = parkingSpaceRepo.getById(parkingSpaceId!);
+      var parkingSpace =
+          parkingSpaceRepo.getById(parkingSpaceId!); // Use getById
       var parking = Parking(
           vehicle: vehicle,
           parkingSpace: parkingSpace,
@@ -38,7 +39,7 @@ void manageParkings() {
       break;
 
     case '2':
-      // View all parkings
+      // Visa alla parkeringar
       var parkings = parkingRepo.getAll();
       if (parkings.isEmpty) {
         print('Inga parkeringar registrerade.');
@@ -50,11 +51,11 @@ void manageParkings() {
       break;
 
     case '3':
-      // Updatera och sluta parkering
+      // Uppdatera och avsluta parkering
       stdout.write(
           'Ange fordonets registreringsnummer för den parkering du vill uppdatera: ');
       var regNumber = stdin.readLineSync();
-      var parking = parkingRepo.getByVehicleRegistration(regNumber!);
+      var parking = parkingRepo.getById(regNumber!); // Use getById
       stdout.write('Vill du avsluta parkeringen? (j/n): ');
       var shouldEnd = stdin.readLineSync();
       if (shouldEnd == 'j') {
@@ -69,7 +70,7 @@ void manageParkings() {
       stdout.write(
           'Ange fordonets registreringsnummer för den parkering du vill ta bort: ');
       var regNumber = stdin.readLineSync();
-      parkingRepo.delete(regNumber!);
+      parkingRepo.delete(regNumber!); // Use regNumber as id
       print('Parkering borttagen.');
       break;
 

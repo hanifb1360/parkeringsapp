@@ -41,7 +41,7 @@ class PersonRepository {
     _persons.removeWhere((p) => p.personalNumber == personalNumber);
   }
 
-  // Add this method to clear the repository between tests
+  // att rensa förvaret bara för testning
   void clear() {
     _persons.clear();
   }

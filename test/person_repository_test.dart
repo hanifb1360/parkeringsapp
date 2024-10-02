@@ -6,7 +6,7 @@ void main() {
   group('PersonRepository', () {
     final repository = PersonRepository();
 
-    // Clear the repository before each test
+    // Rensa lagret före varje test
     setUp(() {
       repository.clear();
     });

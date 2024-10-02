@@ -37,13 +37,15 @@ void main() {
       expect(allVehicles, containsAll([vehicle1, vehicle2]));
     });
 
-    test('should retrieve a vehicle by registration number', () {
+    test('should retrieve a vehicle by registration number (using getById)',
+        () {
       final owner = Person(personalNumber: '123', name: 'John Doe');
       final vehicle =
           Vehicle(registrationNumber: 'ABC123', owner: owner, type: 'Car');
       repository.add(vehicle);
 
-      final retrievedVehicle = repository.getByRegistrationNumber('ABC123');
+      // Use getById instead of getByRegistrationNumber
+      final retrievedVehicle = repository.getById('ABC123');
       expect(retrievedVehicle, equals(vehicle));
     });
 
@@ -71,7 +73,8 @@ void main() {
           Vehicle(registrationNumber: 'ABC123', owner: owner, type: 'SUV');
       repository.update(updatedVehicle);
 
-      final retrievedVehicle = repository.getByRegistrationNumber('ABC123');
+      // Use getById instead of getByRegistrationNumber
+      final retrievedVehicle = repository.getById('ABC123');
       expect(retrievedVehicle.type, 'SUV'); // Update should be reflected
     });
 
@@ -83,8 +86,8 @@ void main() {
 
       repository.delete('ABC123');
 
-      expect(() => repository.getByRegistrationNumber('ABC123'),
-          throwsA(isA<Exception>()));
+      // Use getById instead of getByRegistrationNumber
+      expect(() => repository.getById('ABC123'), throwsA(isA<Exception>()));
     });
   });
 }
